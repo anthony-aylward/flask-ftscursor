@@ -11,21 +11,19 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name='Flask-SQLite3',
+    name='Flask-FTSCursor',
     version='0.0.1',
-    url='http://example.com/flask-sqlite3/',
+    url='https://github.com/anthony-aylward/flask-ftscursor',
     license='MIT',
-    author='Your Name',
-    author_email='your-email@example.com',
+    author='Anthony Aylward',
+    author_email='aaylward@eng.ucsd.edu',
     description='An extension to facilitate using FTSCursor with flask',
     long_description=long_description,
     packages=setuptools.find_packages(),
     zip_safe=False,
     include_package_data=True,
     platforms='any',
-    install_requires=[
-        'Flask'
-    ],
+    install_requires=['Flask', 'ftscursor'],
     classifiers=[
         'Environment :: Web Environment',
         'Intended Audience :: Developers',

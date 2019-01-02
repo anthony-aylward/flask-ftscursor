@@ -1,0 +1,1 @@
+from flask_ftscursor.flask_ftscursor import FTS
