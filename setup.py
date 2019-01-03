@@ -19,6 +19,7 @@ setuptools.setup(
     author_email='aaylward@eng.ucsd.edu',
     description='An extension to facilitate using FTSCursor with flask',
     long_description=long_description,
+    long_description_content_type='text/markdown',
     packages=setuptools.find_packages(),
     zip_safe=False,
     include_package_data=True,
