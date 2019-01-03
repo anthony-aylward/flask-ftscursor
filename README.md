@@ -63,7 +63,7 @@ containing the FTS tables will be kept.
 
 ## Helper Functions
 
-Flask-FTSCursor provides functions called `add_to_index()`,
+Flask-FTSCursor provides functions named `add_to_index()`,
 `remove_from_index()`, and `query_index()` which can be used in place of the
 similarly named functions given in Miguel Grinberg's Flask Mega-Tutorial,
 [Chapter 16: Full-Text Search](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xvi-full-text-search),
