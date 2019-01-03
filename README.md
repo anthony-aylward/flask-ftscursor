@@ -68,5 +68,3 @@ Flask-FTSCursor provides functions called `add_to_index()`,
 similarly named functions given in Miguel Grinberg's Flask Mega-Tutorial,
 [Chapter 16: Full-Text Search](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xvi-full-text-search),
 under the section titled "A Full-Text Search Abstraction."
-
-
