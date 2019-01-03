@@ -1,5 +1,5 @@
 # Flask-FTSCursor
-An extension to facilitate using FTSCursor with flask
+An extension to facilitate using FTSCursor with Flask
 
 ## Installation
 `pip3 install flask-ftscursor`

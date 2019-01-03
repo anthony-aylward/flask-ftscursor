@@ -1,4 +1,4 @@
-"""An extension to facilitate using FTSCursor with flask
+"""An extension to facilitate using FTSCursor with Flask
 
 Classes
 -------
