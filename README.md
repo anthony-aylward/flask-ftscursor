@@ -17,7 +17,8 @@ full-text searches while being able to coexist harmoniously with SQLAlchemy.
 
 ## Tutorial
 
-This will be a very minimal demonstration of the `FTS` object. 
+This will be a very minimal demonstration of the `FTS` object. For an example of
+an app that uses Flask-FTSCursor, see [ucsd-bisb-unofficial](https://github.com/anthony-aylward/ucsd-bisb-unofficial/blob/master/ucsd_bisb_unofficial/models.py).
 
 First import the things we will need
 ```python
