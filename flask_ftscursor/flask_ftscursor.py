@@ -51,9 +51,7 @@ class FTS():
 
 def fts_index(table, id, searchable):
     c = current_app.fts.connection.cursor(factory=FTSCursor)
-    c.attach_source_db(
-        current_app.config['SQLALCHEMY_DATABASE_URI'].split(':///')[1]
-    )
+    c.attach_source_db(current_app.config['FTS_SOURCE_DATABASE'])
     c.index(table, id, searchable)
     current_app.fts.connection.commit()
     c.detach_source_db()
@@ -61,7 +59,7 @@ def fts_index(table, id, searchable):
 
 def fts_delete(table, id):
     c = current_app.fts.connection.cursor(factory=FTSCursor)
-    c.delete(c, table, id)
+    c.delete(table, id)
 
 
 def fts_search(table, query, page, per_page):
