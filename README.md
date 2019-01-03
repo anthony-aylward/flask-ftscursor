@@ -44,12 +44,16 @@ c.executescript('''
 )
 conn.commit()
 
+app.fts.search(table='my_table', query='this test', page=1, per_page=2)
+app.fts.search(table='my_table', query='second', page=1, per_page=2)
+
 with app.app_context()
     app.fts.index(table='my_table', id=1, searchable=('body',))
     app.fts.index(table='my_table', id=2, searchable=('body',))
 
-app.fts.search(table='my_table', query='this test')
-app.fts.search(table='my_table', query='second')
+app.fts.search(table='my_table', query='this test', page=1, per_page=2)
+app.fts.search(table='my_table', query='second', page=1, per_page=2)
+app.fts.drop(table='my_table')
 ```
 
 ## Configuration

@@ -93,7 +93,7 @@ class FTS():
         c.delete(table, id)
 
     def search(self, table: str, query: str, page: int, per_page: int):
-        """Perform a query against an FTS table
+        """Perform a query against a FTS table
 
         Parameters
         ----------
@@ -119,6 +119,18 @@ class FTS():
                 )
             }
         }
+    
+    def drop(self, table: str):
+        """Drop a FTS table
+
+        Parameters
+        ----------
+        table : str
+            the name of the table that will be dropped
+        """
+
+        c = self.connection.cursor(factory=FTSCursor)
+        c.drop(table)
 
 
 
