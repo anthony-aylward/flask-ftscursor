@@ -67,4 +67,5 @@ Flask-FTSCursor provides functions called `add_to_index()`,
 `remove_from_index()`, and `query_index()` which can be used in place of the
 similarly named functions given in Miguel Grinberg's Flask Mega-Tutorial,
 [Chapter 16: Full-Text Search](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xvi-full-text-search),
-under the section titled "A Full-Text Search Abstraction."
+under the section titled "A Full-Text Search Abstraction." For an example of
+an app that uses these functions, see [ucsd-bisb-unofficial](https://github.com/anthony-aylward/ucsd-bisb-unofficial/blob/master/ucsd_bisb_unofficial/models.py).
