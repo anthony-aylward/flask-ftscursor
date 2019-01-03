@@ -75,7 +75,7 @@ class FTS():
         c = self.connection.cursor(factory=FTSCursor)
         c.attach_source_db(current_app.config['FTS_SOURCE_DATABASE'])
         c.index(table, id, searchable)
-        current_app.fts.connection.commit()
+        self.connection.commit()
         c.detach_source_db()
 
     def delete(self, table: str, id: int):

@@ -15,4 +15,58 @@ Even more specifically, it was this sentence:
 Flask-FTSCursor is such a package. It provides high-level access to SQLite3
 full-text searches while being able to coexist harmoniously with SQLAlchemy.
 
-# Example
+## Tutorial
+
+```python
+import sqlite3
+from flask import Flask
+from flask-ftscursor import FTS
+
+fts = FTS()
+
+def create_app():
+    app = Flask(__name__)
+    app.config['FTS_DATABASE'] = 'fts.db'
+    app.config['FTS_SOURCE_DATABASE'] = 'app.db'
+    fts.init_app(app)
+    return app
+
+app = create_app()
+
+conn = sqlite3.connect(app.config['FTS_SOURCE_DATABASE'])
+c = conn.cursor()
+c.executescript('''
+    CREATE TABLE my_table(id INTEGER, body TEXT);
+    INSERT INTO my_table(id, body) VALUES
+    (1, 'this is a test'),
+    (2, 'a second test');
+    '''
+)
+conn.commit()
+
+with app.app_context()
+    app.fts.index(table='my_table', id=1, searchable=('body',))
+    app.fts.index(table='my_table', id=2, searchable=('body',))
+
+app.fts.search(table='my_table', query='this test')
+app.fts.search(table='my_table', query='second')
+```
+
+## Configuration
+
+Flask-FTSCursor relies on two items in the app's configuration: `FTS_DATABASE`
+and `FTS_SOURCE_DATABASE`.
+The value of `FTS_SOURCE_DATABASE` should be the file path of the app's main
+SQLite3 database, or whichever database contains the entries that will be
+indexed. The value of `FTS_DATABSE` should be the file path where the database
+containing the FTS tables will be kept.
+
+## Helper Functions
+
+Flask-FTSCursor provides functions called `add_to_index()`,
+`remove_from_index()`, and `query_index()` which can be used in place of the
+similarly named functions given in Miguel Grinberg's Flask Mega-Tutorial,
+[Chapter 16: Full-Text Search](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xvi-full-text-search),
+under the section titled "A Full-Text Search Abstraction."
+
+
