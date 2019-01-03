@@ -24,27 +24,37 @@ class FTS():
     """a class providing database connections and FTS operations"""
 
     def __init__(self, app=None):
+        """as in http://flask.pocoo.org/docs/1.0/extensiondev/"""
+
         self.app = app
         if app is not None:
             self.init_app(app)
 
     def init_app(self, app):
+        """as in http://flask.pocoo.org/docs/1.0/extensiondev/"""
+
         app.config.setdefault('FTS_DATABASE', ':memory:')
         app.teardown_appcontext(self.teardown)
         app.fts = self
 
     def connect(self):
+        """as in http://flask.pocoo.org/docs/1.0/extensiondev/"""
+
         return sqlite3.connect(
             datetime.utcnow().strftime(current_app.config['FTS_DATABASE'])
         )
 
     def teardown(self, exception):
+        """as in http://flask.pocoo.org/docs/1.0/extensiondev/"""
+
         ctx = _app_ctx_stack.top
         if hasattr(ctx, 'fts_db'):
             ctx.fts_db.close()
 
     @property
     def connection(self):
+        """as in http://flask.pocoo.org/docs/1.0/extensiondev/"""
+        
         ctx = _app_ctx_stack.top
         if ctx is not None:
             if not hasattr(ctx, 'fts_db'):
