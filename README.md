@@ -17,22 +17,33 @@ full-text searches while being able to coexist harmoniously with SQLAlchemy.
 
 ## Tutorial
 
+This will be a very minimal demonstration of the `FTS` object. 
+
+First import the things we will need
 ```python
 import sqlite3
 from flask import Flask
 from flask-ftscursor import FTS
-
+```
+Create a `FTS` object
+```python
 fts = FTS()
-
+```
+Define an application factory function
+```python
 def create_app():
     app = Flask(__name__)
     app.config['FTS_DATABASE'] = 'fts.db'
     app.config['FTS_SOURCE_DATABASE'] = 'app.db'
     fts.init_app(app)
     return app
-
+```
+Create the app
+```python
 app = create_app()
-
+```
+Put some data in the source database
+```python
 conn = sqlite3.connect(app.config['FTS_SOURCE_DATABASE'])
 c = conn.cursor()
 c.executescript('''
@@ -43,16 +54,27 @@ c.executescript('''
     '''
 )
 conn.commit()
-
+```
+Try a search (this will fail, because nothing has been indexed yet)
+```python
 app.fts.search(table='my_table', query='this test', page=1, per_page=2)
-app.fts.search(table='my_table', query='second', page=1, per_page=2)
-
+```
+Index some rows from the source database (adding them to the FTS database)
+```python
 with app.app_context()
     app.fts.index(table='my_table', id=1, searchable=('body',))
     app.fts.index(table='my_table', id=2, searchable=('body',))
-
+```
+Perform a full-text search
+```python
 app.fts.search(table='my_table', query='this test', page=1, per_page=2)
+```
+Try a different query
+```python
 app.fts.search(table='my_table', query='second', page=1, per_page=2)
+```
+Drop the FTS table, removing its contents from the FTS database
+```python
 app.fts.drop(table='my_table')
 ```
 
@@ -65,7 +87,7 @@ SQLite3 database, or whichever database contains the entries that will be
 indexed. The value of `FTS_DATABSE` should be the file path where the database
 containing the FTS tables will be kept.
 
-## Helper Functions
+## Abstraction
 
 Flask-FTSCursor provides functions named `add_to_index()`,
 `remove_from_index()`, and `query_index()` which can be used in place of the
