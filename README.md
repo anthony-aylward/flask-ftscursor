@@ -58,7 +58,8 @@ conn.commit()
 ```
 Try a search (this will fail, because nothing has been indexed yet)
 ```python
-app.fts.search(table='my_table', query='this test', page=1, per_page=2)
+with app.app_context()
+    app.fts.search(table='my_table', query='this test', page=1, per_page=2)
 ```
 Index some rows from the source database (adding them to the FTS database)
 ```python
@@ -68,15 +69,18 @@ with app.app_context()
 ```
 Perform a full-text search
 ```python
-app.fts.search(table='my_table', query='this test', page=1, per_page=2)
+with app.app_context()
+    app.fts.search(table='my_table', query='this test', page=1, per_page=2)
 ```
 Try a different query
 ```python
-app.fts.search(table='my_table', query='second', page=1, per_page=2)
+with app.app_context()
+    app.fts.search(table='my_table', query='second', page=1, per_page=2)
 ```
 Drop the FTS table, removing its contents from the FTS database
 ```python
-app.fts.drop(table='my_table')
+with app.app_context()
+    app.fts.drop(table='my_table')
 ```
 
 ## Configuration
