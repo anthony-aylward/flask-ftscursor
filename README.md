@@ -72,10 +72,16 @@ Perform a full-text search
 with app.app_context()
     app.fts.search(table='my_table', query='this test', page=1, per_page=2)
 ```
+```python
+{'hits': {'total': 1, 'hits': ({'_id': 1},)}}
+```
 Try a different query
 ```python
 with app.app_context()
     app.fts.search(table='my_table', query='second', page=1, per_page=2)
+```
+```python
+{'hits': {'total': 1, 'hits': ({'_id': 2},)}}
 ```
 Drop the FTS table, removing its contents from the FTS database
 ```python
