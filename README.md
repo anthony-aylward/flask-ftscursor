@@ -24,7 +24,7 @@ First import the things we will need
 ```python
 import sqlite3
 from flask import Flask
-from flask-ftscursor import FTS
+from flask_ftscursor import FTS
 ```
 Create a `FTS` object
 ```python
