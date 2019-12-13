@@ -12,7 +12,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='Flask-FTSCursor',
-    version='0.2.3',
+    version='0.2.4',
     url='https://github.com/anthony-aylward/flask-ftscursor',
     license='MIT',
     author='Anthony Aylward',
@@ -31,6 +31,7 @@ setuptools.setup(
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
+        'Framework :: Flask',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
         'Topic :: Software Development :: Libraries :: Python Modules'
     ]
